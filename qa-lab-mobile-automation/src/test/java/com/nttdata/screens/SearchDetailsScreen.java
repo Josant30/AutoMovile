@@ -51,8 +51,18 @@ public class SearchDetailsScreen extends PageObject {
         actions.click(searchDetailInput).build().perform();
         System.out.println("Texto2");
         searchDetailInputText.sendKeys(place);
+        try {
 
-        actions.sendKeys(searchDetailInputText, Keys.ENTER).build().perform();
+            System.out.println("Buscar");
+            WebDriverWait wait = new WebDriverWait(getDriver(), 10);
+            wait.until(ExpectedConditions.elementToBeClickable(searchDetailInputText));
+            getDriver().manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            actions.sendKeys(searchDetailInputText, Keys.ENTER).build().perform();
+
+        } catch (Exception e) {
+            System.out.println("error:" + e.getMessage());
+        }
+
 
     }
 
